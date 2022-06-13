@@ -1,6 +1,7 @@
 package controller;
 
 
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.Role;
 import pojo.User;
 import service.role.RoleService;
@@ -219,7 +221,6 @@ public class UserController {
     }
 
 
-
     /**
      * 查看用户
      */
@@ -230,9 +231,43 @@ public class UserController {
         return "userview";
     }
 
+    /**
+     * 判断是否存在userCode
+     * @userCode
+     */
+    @RequestMapping(value="/ucexist")
+    @ResponseBody
+    public Object ucexist(@RequestParam String userCode){
+        String data="{\"userCode\":\"noexist\"}";  //初始化字符串
+        if(userCode==null||userCode.length()==0){  //如果userCode是空值
+            data="{\"userCode\":\"exist\"}";  //空值直接返回已存在
+        }
+        else{
+            User user = userService.selectUserCodeExist(userCode);
+            if(user!=null)
+                data="{\"userCode\":\"exist\"}";
+            else
+                data="{\"userCode\":\"noexist\"}";
+        }
+        return JSONArray.toJSONString(data);//将data转为json对象,并将结果发回给当前页面
+    }
 
-
-
+    /**
+     * 删除用户数据
+     * @param uid
+     * @return
+     */
+    @RequestMapping(value="/deluser")
+    @ResponseBody
+    public Object deluser(@RequestParam int uid){
+        String data="{\"delResult\":\"false\"}";  //初始化字符串
+        boolean result= userService.deleteUserById(uid);
+        if(result==true)
+            data="{\"delResult\":\"true\"}"; //删除成功
+        else
+            data="{\"delResult\":\"false\"}"; //删除失败
+        return JSONArray.toJSONString(data);//将data转为json对象,并将结果发回给当前页面
+    }
 
 
 }

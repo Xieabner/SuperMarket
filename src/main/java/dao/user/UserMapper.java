@@ -52,7 +52,6 @@ public interface UserMapper {
     public User getUserById(int id)throws Exception;
 
 
-
     /**
      * 修改用户信息
      * @param user
@@ -62,16 +61,13 @@ public interface UserMapper {
     public int modify(User user)throws Exception;
 
 
-
-
-
-
-
-
-
-
-
-
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public int deleteUserById(int id) throws Exception;
 
 
 }

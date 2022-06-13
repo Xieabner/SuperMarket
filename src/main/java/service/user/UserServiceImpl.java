@@ -16,6 +16,8 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
 
 
+
+
     /**
      * 根据userCode查询用户
      * @param userCode
@@ -113,9 +115,33 @@ public class UserServiceImpl implements UserService{
         return result;
     }
 
+    /**
+     * 判断用户是否存在
+     * @param userCode
+     * @return
+     */
+    public User selectUserCodeExist(String userCode) {
+        User user = userMapper.getUserByUserCode(userCode);
+        return user;
+    }
 
-
-
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    public boolean deleteUserById(int id) {
+        boolean result = false;
+        try {
+            if(userMapper.deleteUserById(id) > 0)
+                result = true; //删除成功
+            else
+                result=false;  //删除失败
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 
 

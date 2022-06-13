@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/WEB-INF/pages/common/head.jsp"%>
 <div class="right">
@@ -15,7 +16,7 @@
 					<c:if test="${user.gender == 2 }">女</c:if>
 				</span>
         </p>
-        <p><strong>出生日期：</strong><span>${user.birthday }</span></p>
+        <p><strong>出生日期：</strong><span><fmt:formatDate value="${user.birthday }" pattern="yyyy-MM-dd"/></span></p>
         <p><strong>用户电话：</strong><span>${user.phone }</span></p>
         <p><strong>用户地址：</strong><span>${user.address }</span></p>
         <p><strong>用户角色：</strong><span>${user.role.roleName}</span></p>

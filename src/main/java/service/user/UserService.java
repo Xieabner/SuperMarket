@@ -57,10 +57,20 @@ public interface UserService {
     public boolean modify(User user);
 
 
+    /**
+     * 判断用户是否存在
+     * @param userCode
+     * @return
+     */
+    public User selectUserCodeExist(String userCode);
 
 
-
-
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    public boolean deleteUserById(int id);
 
 
 
