@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.user.UserMapper">
+    <!-- 根据userCode查询用户 -->
+    <select id="getUserByUserCode" resultType="pojo.User" parameterType="String">
+        select * from smbms.smbms_user where userCode=#{userCode}
+    </select>
+
+    <!-- 查询用户计录数-->
+    <select id="getUserCount" resultType="int" >
+        select count(1) as count from smbms.smbms_user u join smbms.smbms_role r on u.userRole = r.id
+        <where>
+            <if test="userName != null and userName != ''">
+                u.userName like CONCAT ('%',#{userName},'%')
+            </if>
+            <if test="userRole != null and userRole!=0">
+                and u.userRole = #{userRole}
+            </if>
+        </where>
+    </select>
+
+    <!-- 创建一个对用户表分页的查询 -->
+    <select id="getUserListByPage" resultMap="UserWithRoleName">
+        select u.*,r.* from smbms.smbms_user u join smbms.smbms_role r on u.userRole = r.id
+        <where>
+            <if test="userName != null and userName != ''">
+                and u.userName like CONCAT ('%',#{userName},'%')
+            </if>
+            <if test="userRole != null  and userRole!=0">
+                and u.userRole = #{userRole}
+            </if>
+        </where>
+        order by u.id  limit #{currentPageNo},#{pageSize}
+    </select>
+    <resultMap id="UserWithRoleName" type="User">
+        <id property="id" column="id" />
+        <association property="role" javaType="Role">
+            <id property="id" column="id" />
+        </association>
+    </resultMap>
+
+</mapper>
