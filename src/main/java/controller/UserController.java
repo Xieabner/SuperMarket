@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pojo.Role;
 import pojo.User;
@@ -15,6 +16,7 @@ import tools.PageSupport;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -98,6 +100,16 @@ public class UserController {
     }
 
 
+    /**
+     * 分页查询
+     * @param model
+     * @param session
+     * @param queryUserName
+     * @param queryUserRole
+     * @param pageIndex
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value="/userlist")
     public String getUserList(Model model,HttpSession session,
                               @RequestParam(value="queryname",required=false) String queryUserName,
@@ -164,10 +176,59 @@ public class UserController {
     }
 
 
+    /**
+     * 当用户点击“添加用户”的时候，打开这个链接，并通过它转向对应的useradd.jsp页面
+     * @return
+     */
+    @RequestMapping(value="/useradd")
+    public String addUser(){
+        return "useradd";
+    }
+
+    /**
+     * 添加用户
+     * @return
+     */
+    @RequestMapping(value="/useraddsave",method= RequestMethod.POST)
+    public String addUserSave(User user,HttpSession session){
+        //添加用户表的createby值：
+        user.setCreatedBy(((User)session.getAttribute("user")).getId());
+        //添加用户表的createdate值：
+        user.setCreationDate(new Date());
+        if(userService.add(user)==true){ //如果添加成功就返回userlist
+            return "redirect:/userlist";
+        }
+        return "useradd"; //添加不成功留在useradd
+    }
+
+    @RequestMapping(value="/usermodify")
+    public String getUserById(@RequestParam int uid,Model model){
+        User user = userService.getUserById(uid);
+        model.addAttribute(user);
+        return "usermodify";
+    }
+
+    @RequestMapping(value="/usermodifysave",method=RequestMethod.POST)
+    public String modifyUserSave(User user,HttpSession session){
+        user.setModifyBy(((User)session.getAttribute("user")).getId());
+        user.setModifyDate(new Date());
+        if(userService.modify(user)){
+            return "redirect:/userlist";
+        }
+        return "usermodify";
+    }
 
 
 
-
+    /**
+     * 查看用户
+     */
+    @RequestMapping(value="/userview")
+    public String view(@RequestParam int uid,Model model){
+        User user = userService.getUserById(uid);
+        model.addAttribute(user);
+        return "userview";
+    }
 
 
 

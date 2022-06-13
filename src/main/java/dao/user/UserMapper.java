@@ -31,10 +31,47 @@ public interface UserMapper {
      * @param pageSize
      * @return
      */
-    public List<User> getUserListByPage(@Param("userName")String userName,
-                                        @Param("userRole")Integer userRole,
-                                        @Param("currentPageNo")Integer currentPageNo,
-                                        @Param("pageSize")Integer pageSize);
+    public List<User> getUserListByPage(@Param("userName")String userName, @Param("userRole")Integer userRole, @Param("currentPageNo")Integer currentPageNo, @Param("pageSize")Integer pageSize);
+
+
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+     public int add(User user) throws Exception;
+
+
+    /**
+     * 根据用户ID获取用户信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public User getUserById(int id)throws Exception;
+
+
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    public int modify(User user)throws Exception;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

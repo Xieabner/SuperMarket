@@ -30,4 +30,40 @@ public interface UserService {
      * @return
      */
     public List<User> getUserListByPage (String queryUserName, int queryUserRole, int currentPageNo, int pageSize);
+
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
+    public boolean add(User user);
+
+    /**
+     * 根据用户ID获取用户信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public User getUserById(int id);
+
+
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    public boolean modify(User user);
+
+
+
+
+
+
+
+
+
+
+
 }
