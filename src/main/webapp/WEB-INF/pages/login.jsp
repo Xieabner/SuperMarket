@@ -13,11 +13,13 @@
 <body class="login_bg">
 <section class="loginBox">
     <header class="loginHeader">
+        <h3>谢计有 &nbsp;20195080901142 &nbsp;19计科3班</h3>
         <h1>超市订单管理系统</h1>
     </header>
     <section class="loginCont">
         <form class="loginForm" action="${pageContext.request.contextPath }/dologin"  name="actionForm" id="actionForm"  method="post" >
             <div class="info">${error }</div>
+
             <div class="inputbox">
                 <label for="user">帐号：</label>
                 <input type="text" class="input-text" id="userCode" name="userCode" placeholder="请输入用户名" required/>

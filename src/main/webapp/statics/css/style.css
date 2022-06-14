@@ -8,6 +8,7 @@
     background: url("../images/loginBg.jpg") 0 0 repeat-x;
 }
 
+
 .loginBox {
     width: 1000px;
     margin: 0 auto;
@@ -21,6 +22,10 @@
 }
 
 .loginHeader h1 {
+    color: #fff;
+    text-shadow: 2px 2px #000;
+}
+.loginHeader h3 {
     color: #fff;
     text-shadow: 2px 2px #000;
 }

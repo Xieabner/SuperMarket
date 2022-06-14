@@ -1,12 +1,11 @@
 package dao.user;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import pojo.User;
 
 import java.util.List;
 
-@Mapper
+
 public interface UserMapper {
     /**
      * 根据userCode查询用户
