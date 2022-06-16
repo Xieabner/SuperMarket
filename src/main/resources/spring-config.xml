@@ -47,4 +47,5 @@
 	<!--<bean id="userService" class="service.user.UserServiceImpl" autowire="byName" />-->
 
 	<context:component-scan base-package="service" />
+	<aop:aspectj-autoproxy/>
 </beans>

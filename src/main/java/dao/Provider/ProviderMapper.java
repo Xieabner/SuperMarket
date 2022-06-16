@@ -3,6 +3,7 @@ package dao.Provider;
 
 import org.apache.ibatis.annotations.Param;
 import pojo.Provider;
+import pojo.User;
 
 import java.util.List;
 
@@ -30,40 +31,12 @@ public interface ProviderMapper {
                                           @Param("pageSize") Integer pageSize);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
-     * 增加供应商信息
+     * 增加供应商
      * @param provider
      * @return
      */
-    public int add(@Param("provider") Provider provider);
-
-
-    /**
-     * 获取供应商列表
-     * @return
-     */
-    public List<Provider> getProList();
-
-
-    /**
-     * 通过供应商Id删除供应商信息
-     * @param delId
-     * @return
-     */
-    public int deleteProviderById(@Param("id") Integer delId);
+    public int add(Provider provider);
 
 
     /**
@@ -71,7 +44,8 @@ public interface ProviderMapper {
      * @param id
      * @return
      */
-    public Provider getProviderById(@Param("id") Integer id);
+    public Provider getProviderById(int id);
+
 
 
     /**
@@ -79,7 +53,28 @@ public interface ProviderMapper {
      * @param provider
      * @return
      */
-    public int modify(Provider provider);
+    public int modify(Provider provider)throws Exception;
+
+
+
+
+
+
+
+
+    /**
+     * 通过供应商Id删除供应商信息
+     * @param delId
+     * @return
+     */
+    public int deleteProviderById(Integer delId)throws Exception;
+
+
+
+
+
+
+
 
 
 }

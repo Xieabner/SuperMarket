@@ -7,7 +7,7 @@
         <span>供应商管理页面</span>
     </div>
     <div class="search">
-        <form method="post" action="${pageContext.request.contextPath }/Providerlist">
+        <form method="post" action="${pageContext.request.contextPath }/providerList">
             <input name="method" value="query" class="input-text" type="hidden">
             <span>供应商名称：</span>
             <input name="queryname" class="input-text"	type="text" value="${proName }">
@@ -17,7 +17,7 @@
 
             <input type="hidden" name="pageIndex" value="1"/>
             <input	value="查 询" type="submit" id="searchbutton">
-            <a href="${pageContext.request.contextPath}/" >添加供应商</a>
+            <a href="${pageContext.request.contextPath}/providerAdd" >添加供应商</a>
         </form>
     </div>
     <!--用户-->
@@ -74,8 +74,8 @@
 </section>
 
 <!--点击删除按钮后弹出的页面-->
-<div class="zhezhao"></div>
-<div class="remove" id="removeUse">
+<%--<div class="zhezhao"></div>
+<div class="remove" id="removeProvider">
     <div class="removerChid">
         <h2>提示</h2>
         <div class="removeMain">
@@ -84,7 +84,7 @@
             <a href="#" id="no">取消</a>
         </div>
     </div>
-</div>
+</div>--%>
 
 <%@include file="/WEB-INF/pages/common/foot.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/providerlist.js"></script>

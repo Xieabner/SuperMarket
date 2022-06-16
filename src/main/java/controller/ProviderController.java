@@ -1,9 +1,12 @@
 package controller;
 
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.Provider;
 import pojo.User;
 import service.Provider.ProviderService;
@@ -12,6 +15,7 @@ import tools.PageSupport;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,7 +27,7 @@ public class ProviderController {
     private ProviderService providerService;
 
 
-    @RequestMapping(value="/Providerlist")
+    @RequestMapping(value="/providerList")
     public String getUserList(Model model, HttpSession session,
                               @RequestParam(value="queryname",required=false) String proName,
                               @RequestParam(value="querycode",required=false) String proCode,
@@ -81,15 +85,71 @@ public class ProviderController {
         model.addAttribute("totalCount",totalCount);
         model.addAttribute("currentPageNo",currentPageNo);
 
-
         return "Providerlist";
     }
 
 
+    /**
+     * 当用户点击“添加供应商”的时候，打开这个链接，并通过它转向对应的provideradd.jsp.jsp页面
+     * @return
+     */
+    @RequestMapping(value="/providerAdd")
+    public String addUser(){
+        return "provideradd";
+    }
+    @RequestMapping(value="/providerAddSave",method= RequestMethod.POST)
+    public String addPoviderSave(Provider provider,HttpSession session){
+        //添加供应商的createby值：
+        provider.setCreatedBy(((User)session.getAttribute("user")).getId());
+        //添加供应商的createdate值：
+        provider.setCreationDate(new Date());
+
+        if(providerService.add(provider)==true){
+            //如果添加成功就返回userlist
+            return "redirect:/providerList";
+        }
+        return "provideradd"; //添加不成功留在provideradd
+    }
+
+    /**
+     * 查看用户
+     */
+    @RequestMapping(value="/providerview")
+    public String view(@RequestParam int proid,Model model){
+        Provider provider = providerService.getProviderById(proid);
+        model.addAttribute(provider);
+        return "providerview";
+    }
+
+    @RequestMapping(value="/providermodify")
+    public String getProviderById(@RequestParam int id,Model model){
+        Provider provider = providerService.getProviderById(id);
+        model.addAttribute(provider);
+        return "providermodify";
+    }
+
+    @RequestMapping(value="/providerModifySave",method=RequestMethod.POST)
+    public String modifyProviderSave(Provider provider,HttpSession session){
+        provider.setModifyBy(((User)session.getAttribute("user")).getId());
+        provider.setModifyDate(new Date());
+        if(providerService.modify(provider)){
+            return "redirect:/providerList";
+        }
+        return "providermodify";
+    }
 
 
-
-
-
+    //删除用户数据
+    @RequestMapping(value="/deleteProvider")
+    @ResponseBody
+    public Object deluser(@RequestParam int id){
+        String data="{\"delResult\":\"false\"}";  //初始化字符串
+        boolean result= providerService.deleteProviderById(id);
+        if(result==true)
+            data="{\"delResult\":\"true\"}"; //删除成功
+        else
+            data="{\"delResult\":\"false\"}"; //删除失败
+        return JSONArray.toJSONString(data);//将data转为json对象,并将结果发回给当前页面
+    }
 
 }

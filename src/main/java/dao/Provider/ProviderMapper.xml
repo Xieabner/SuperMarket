@@ -18,8 +18,6 @@
     </select>
 
 
-
-
     <!--   通过条件查询分页providerListByPage -->
     <select id="getProviderListByPage" resultType="Provider">
         select * from smbms.smbms_provider
@@ -35,27 +33,50 @@
     </select>
 
 
+    <!--  添加供应商  -->
+    <insert id="add" parameterType="pojo.Provider">
+        insert into smbms.smbms_provider (proCode,proName,proContact,proPhone
+        <if test="proFax!=null and proFax!=''">,proFax</if>
+        <if test="proDesc!= null and proDesc!=''">,proDesc</if>
+        <if test="proAddress!= null and proAddress!=''">,proAddress</if>
+        <if test="createdBy!= null and createdBy!=0">,createdBy</if>
+        <if test="creationDate!= null">,creationDate</if>
+        )
+        values (#{proCode},#{proName},#{proContact},#{proPhone}
+        <if test="proFax!= null and proFax!=''">,#{proFax}</if>
+        <if test="proDesc!= null and proDesc!=''">,#{proDesc}</if>
+        <if test="proAddress!= null and proAddress!=''">,#{proAddress}</if>
+        <if test="createdBy!= null and createdBy!=0">,#{createdBy}</if>
+        <if test="creationDate!= null">,#{creationDate}</if>)
+    </insert>
 
-
-
-
-
-
-
-
-
-    <!--    获取供应商列表-->
-    <select id="getProList" resultType="provider">
-        select * from smbms_provider
+    <!-- 根据ID获取用户数据 -->
+    <select id="getProviderById" resultType="pojo.Provider">
+        select  * from smbms.smbms_provider where id=#{id}
     </select>
 
+    <!-- 修改数据 -->
+    <update id="modify" parameterType="pojo.Provider">
+        update smbms.smbms_provider
+        <set>
+            <if test="proCode != null">proCode=#{proCode},</if>
+            <if test="proName != null">proName=#{proName},</if>
+            <if test="proDesc != null">proDesc=#{proDesc},</if>
+            <if test="proContact != null">proContact=#{proContact},</if>
+            <if test="proPhone != null">proPhone=#{proPhone},</if>
+            <if test="proAddress != null">proAddress=#{proAddress},</if>
+            <if test="proFax != null">proFax=#{proFax},</if>
+            <if test="modifyBy != null">modifyBy=#{modifyBy},</if>
+            <if test="modifyDate != null">modifyDate=#{modifyDate}</if>
+        </set>
+        where id = #{id}
+    </update>
 
+    <!--删除数据-->
+    <delete id="deleteProviderById" parameterType="int">
+        delete from smbms.smbms_provider where id=#{id}
+    </delete>
 
-
-
-    <select id="getProviderById" resultType="provider">
-        select * from smbms_provider where id=#{id}
-    </select>
 
 
 

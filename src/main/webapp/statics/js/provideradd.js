@@ -66,6 +66,8 @@ $(function(){
 			validateTip(proPhone.next(),{"color":"red"},imgNo + " 您输入的手机号格式不正确",false);
 		}
 	});
+
+
 	
 	addBtn.bind("click",function(){
 		if(proCode.attr("validateStatus") != "true"){
