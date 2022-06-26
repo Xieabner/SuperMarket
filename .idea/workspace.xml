@@ -9,14 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fe31935-0667-4077-bc84-74949ab9ae54" name="Default Changelist" comment="The third time common....&#10;2022.6.14 23:10">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7015c59f-6e17-4daf-b4f9-6b23cd5ebba1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7015c59f-6e17-4daf-b4f9-6b23cd5ebba1.xml" afterDir="false" />
+    <list default="true" id="6fe31935-0667-4077-bc84-74949ab9ae54" name="Default Changelist" comment="The fifth time common....&#10;2022.6.14 23:10">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +295,7 @@
       <workItem from="1655110524300" duration="54971000" />
       <workItem from="1655308633846" duration="7680000" />
       <workItem from="1655351842844" duration="6964000" />
-      <workItem from="1656261011790" duration="915000" />
+      <workItem from="1656261011790" duration="2281000" />
     </task>
     <task id="LOCAL-00001" summary="first common....&#10;2022.6.13 21:30">
       <created>1655127134899</created>
@@ -324,17 +318,36 @@
       <option name="project" value="LOCAL" />
       <updated>1655219418848</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="The fifth time common....&#10;2022.6.14 23:10">
+      <created>1656262054692</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656262054692</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first common....&#10;2022.6.13 21:30" />
     <MESSAGE value="The second time common....&#10;2022.6.13 22:30" />
     <MESSAGE value="The third time common....&#10;2022.6.14 23:10" />
-    <option name="LAST_COMMIT_MESSAGE" value="The third time common....&#10;2022.6.14 23:10" />
+    <MESSAGE value="The fifth time common....&#10;2022.6.14 23:10" />
+    <option name="LAST_COMMIT_MESSAGE" value="The fifth time common....&#10;2022.6.14 23:10" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
